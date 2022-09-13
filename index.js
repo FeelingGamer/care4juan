@@ -11,7 +11,8 @@ var app = express();
 
 app.use((req, res, next) => {
   const allowedOrigins = [
-    'http://localhost:4200', 
+    'http://localhost:4200/', 
+    'http://localhost:4200',
     'http://localhost:8100',
     'http://cmms-mabini.com',
     'capacitor://localhost',
@@ -39,15 +40,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/public/uploads', express.static('public/uploads'));
 
 //API Endpoints
 app.use('/', authRouter);
 
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
